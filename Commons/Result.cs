@@ -3,20 +3,14 @@ namespace NetCoreKit.Commons;
 #nullable disable
 
 /// <summary>
-/// Represents a result of an operation that can either succeed with a value of type <typeparamref name="T"/> or fail with an <see cref="Exception"/>.
+/// Represents a result of an operation that can either succeed or fail with an <see cref="Exception"/>.
 /// </summary>
-/// <typeparam name="T">The type of the result's value.</typeparam>
-public class Result<T>
+public class Result
 {
 	/// <summary>
 	/// Gets the exception if the operation failed, otherwise null.
 	/// </summary>
 	public Exception Exception { get; set; } = null!;
-
-	/// <summary>
-	/// Gets the value if the operation succeeded.
-	/// </summary>
-	public T Value { get; set; } = default!;
 
 	/// <summary>
 	/// Gets a value indicating whether the operation was successful.
@@ -25,14 +19,13 @@ public class Result<T>
 
 #nullable enable
 
-	/// <summary>
-	/// Gets a value indicating whether the operation failed.
-	/// </summary>
 	public bool IsFailure => !IsSuccess;
 
-	private Result(T value)
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Result"/> class.
+	/// </summary>
+	public Result()
 	{
-		Value = value;
 	}
 
 	private Result(Exception exception)
@@ -41,27 +34,21 @@ public class Result<T>
 	}
 
 	/// <summary>
-	/// Implicitly converts a value of type <typeparamref name="T"/> to a successful result.
+	/// Implicitly converts a boolean value to a successful result.
 	/// </summary>
-	public static implicit operator Result<T>(T data)
+	/// <param name="_">The boolean value that has not purpose other than simplifying returning from successful operation.</param>
+	/// <returns>A new instance of <see cref="Result"/>.</returns>
+	public static implicit operator Result(bool _)
 	{
-		return new Result<T>(data);
+		return new Result();
 	}
 
 	/// <summary>
 	/// Implicitly converts an <see cref="Exception"/> to a failed result.
 	/// </summary>
-	public static implicit operator Result<T>(Exception exception)
+	public static implicit operator Result(Exception exception)
 	{
-		return new Result<T>(exception);
-	}
-
-	/// <summary>
-	/// Returns the data if the operation was successful, otherwise returns default(T).
-	/// </summary>
-	public T? Unwrap()
-	{
-		return this.IsSuccess ? this.Value : default(T?);
+		return new Result(exception);
 	}
 
 	/// <summary>
@@ -69,11 +56,11 @@ public class Result<T>
 	/// </summary>
 	/// <param name="onSuccess">The action to invoke if the operation was successful.</param>
 	/// <param name="onFailure">The action to invoke if the operation failed.</param>
-	public void Match(Action<T> onSuccess, Action<Exception> onFailure)
+	public void Match(Action onSuccess, Action<Exception> onFailure)
 	{
 		if (IsSuccess)
 		{
-			onSuccess(Value);
+			onSuccess();
 		}
 		else
 		{
