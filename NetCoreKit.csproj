@@ -11,7 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Xeption" Version="2.6.0" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Xeption" Version="2.6.0" />
     </ItemGroup>
 
 </Project>
