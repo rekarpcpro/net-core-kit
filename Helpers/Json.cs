@@ -28,7 +28,7 @@ public static class Json
 	/// <param name="obj">The object to serialize.</param>
 	/// <param name="options">Optional. The JsonSerializerOptions to use for serialization. If not provided, uses default options.</param>
 	/// <returns>A JSON string representation of the object.</returns>
-	public static string ToJson<T>(T obj, JsonSerializerOptions? options = null)
+	public static string ToJson<T>(this T obj, JsonSerializerOptions? options = null)
 	{
 		return JsonSerializer.Serialize(obj, options ?? defaultOptions);
 	}
@@ -40,7 +40,7 @@ public static class Json
 	/// <param name="json">The JSON string to deserialize.</param>
 	/// <param name="options">Optional. The JsonSerializerOptions to use for deserialization. If not provided, uses default options.</param>
 	/// <returns>An object of type T representing the deserialized JSON string. Returns null if deserialization fails.</returns>
-	public static T? FromJson<T>(string json, JsonSerializerOptions? options = null)
+	public static T? FromJson<T>(this string json, JsonSerializerOptions? options = null)
 	{
 		return JsonSerializer.Deserialize<T>(json, options ?? defaultOptions);
 	}
