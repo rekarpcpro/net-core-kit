@@ -67,7 +67,7 @@ public static class ResultExtensions
 	/// </summary>
 	/// <param name="result">The operation result containing the exception.</param>
 	/// <returns>An IActionResult representing an error response.</returns>
-	public static IActionResult ReturnResponse(this Result result)
+	public static IActionResult ReturnErrorResponse(this Result result)
 	{
 		return result.Exception.ReturnErrorResponse();
 	}
