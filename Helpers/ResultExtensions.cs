@@ -57,7 +57,7 @@ public static class ResultExtensions
 	/// <typeparam name="T">The type of the result's value.</typeparam>
 	/// <param name="result">The operation result containing the exception.</param>
 	/// <returns>An IActionResult representing an error response.</returns>
-	public static IActionResult ReturnResponse<T>(this Result<T> result)
+	public static IActionResult ReturnErrorResponse<T>(this Result<T> result)
 	{
 		return result.Exception.ReturnErrorResponse();
 	}

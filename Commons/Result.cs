@@ -10,7 +10,7 @@ public class Result
 	/// <summary>
 	/// Gets the exception if the operation failed, otherwise null.
 	/// </summary>
-	public Exception Exception { get; set; } = null!;
+	public Exception Exception { get; } = null!;
 
 	/// <summary>
 	/// Gets a value indicating whether the operation was successful.
