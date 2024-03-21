@@ -4,6 +4,14 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>RekarPC98.NetCoreKit</PackageId>
+        <Version>0.1.1</Version>
+        <Title>NetCoreKit</Title>
+        <Authors>RekarPC98</Authors>
+        <Description>Core tools for dotnet</Description>
+        <PackageProjectUrl>https://github.com/rekarpc98/net-core-kit</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/rekarpc98/net-core-kit</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
