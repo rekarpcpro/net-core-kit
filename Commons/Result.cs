@@ -50,9 +50,9 @@ public class Result
 	{
 		return new Result(exception);
 	}
-	
+
 	/// <summary>
-	/// Matches the result, invoking the appropriate action based on whether the operation was successful or failed.
+	/// Switches on the result, invoking the appropriate action based on whether the operation was successful or failed.
 	/// </summary>
 	/// <param name="onSuccess">The action to invoke if the operation was successful.</param>
 	/// <param name="onFailure">The action to invoke if the operation failed.</param>
@@ -69,7 +69,8 @@ public class Result
 	}
 
 	/// <summary>
-	/// Matches the result, invoking the appropriate action based on whether the operation was successful or failed.
+	/// Matches the result, invoking the appropriate function based on whether the operation was successful or failed
+	/// and returning the something.
 	/// </summary>
 	/// <param name="onSuccess">The function to invoke if the operation was successful.</param>
 	/// <param name="onFailure">The function to invoke if the operation failed.</param>
