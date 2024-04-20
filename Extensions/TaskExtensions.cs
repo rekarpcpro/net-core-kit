@@ -1,4 +1,6 @@
-﻿namespace NetCoreKit.Extensions;
+﻿using NetCoreKit.Exceptions;
+
+namespace NetCoreKit.Extensions;
 
 /// <summary>
 /// Extension methods for <see cref="Task{T}"/>.
@@ -19,7 +21,7 @@ public static class TaskExtensions
 
 		if (result == null)
 		{
-			throw new Exception(message ?? $"{typeof(T).Name} is null");
+			throw new NotFoundException(message ?? $"{typeof(T).Name} is null");
 		}
 
 		return result;
