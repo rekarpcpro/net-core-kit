@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>RekarPC98.NetCoreKit</PackageId>
-        <Version>0.1.3</Version>
+        <Version>0.1.4</Version>
         <Title>NetCoreKit</Title>
         <Authors>RekarPC98</Authors>
         <Description>Core tools for dotnet</Description>
