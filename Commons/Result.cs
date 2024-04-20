@@ -50,13 +50,13 @@ public class Result
 	{
 		return new Result(exception);
 	}
-
+	
 	/// <summary>
 	/// Matches the result, invoking the appropriate action based on whether the operation was successful or failed.
 	/// </summary>
 	/// <param name="onSuccess">The action to invoke if the operation was successful.</param>
 	/// <param name="onFailure">The action to invoke if the operation failed.</param>
-	public void Match(Action onSuccess, Action<Exception> onFailure)
+	public void Switch(Action onSuccess, Action<Exception> onFailure)
 	{
 		if (IsSuccess)
 		{
@@ -66,5 +66,15 @@ public class Result
 		{
 			onFailure(Exception);
 		}
+	}
+
+	/// <summary>
+	/// Matches the result, invoking the appropriate action based on whether the operation was successful or failed.
+	/// </summary>
+	/// <param name="onSuccess">The function to invoke if the operation was successful.</param>
+	/// <param name="onFailure">The function to invoke if the operation failed.</param>
+	public T Match<T>(Func<T> onSuccess, Func<Exception, T> onFailure)
+	{
+		return IsSuccess ? onSuccess() : onFailure(Exception);
 	}
 }
