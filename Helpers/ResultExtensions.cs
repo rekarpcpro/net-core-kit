@@ -17,9 +17,9 @@ public static class ResultExtensions
 	/// <returns>An IActionResult representing an OK response with the result's value or an error response.</returns>
 	public static IActionResult Ok<T>(this Result<T> result)
 	{
-		return result.IsSuccess ? new OkObjectResult(result.Value) : result.Exception.ReturnErrorResponse();
+		return result.IsSuccess ? new OkObjectResult(result.Value) : ReturnErrorResponseFromException(result.Exception);
 	}
-	
+
 	/// <summary>
 	/// Converts a <see cref="Result"/> to an OkObjectResult if the operation was successful, otherwise returns an error response.
 	/// </summary>
@@ -27,7 +27,7 @@ public static class ResultExtensions
 	/// <returns>An IActionResult representing an OK response or an error response.</returns>
 	public static IActionResult Ok(this Result result)
 	{
-		return result.IsSuccess ? new OkObjectResult(null) : result.Exception.ReturnErrorResponse();
+		return result.IsSuccess ? new OkObjectResult(null) : ReturnErrorResponseFromException(result.Exception);
 	}
 
 	/// <summary>
@@ -38,9 +38,9 @@ public static class ResultExtensions
 	/// <returns>An IActionResult representing a no content response or an error response.</returns>
 	public static IActionResult NoContent<T>(this Result<T> result)
 	{
-		return result.IsSuccess ? new NoContentResult() : result.Exception.ReturnErrorResponse();
+		return result.IsSuccess ? new NoContentResult() : ReturnErrorResponseFromException(result.Exception);
 	}
-	
+
 	/// <summary>
 	/// Converts a <see cref="Result"/> to a NoContentResult if the operation was successful, otherwise returns an error response.
 	/// </summary>
@@ -48,7 +48,7 @@ public static class ResultExtensions
 	/// <returns>An IActionResult representing a no content response or an error response.</returns>
 	public static IActionResult NoContent(this Result result)
 	{
-		return result.IsSuccess ? new NoContentResult() : result.Exception.ReturnErrorResponse();
+		return result.IsSuccess ? new NoContentResult() : ReturnErrorResponseFromException(result.Exception);
 	}
 
 	/// <summary>
@@ -61,7 +61,7 @@ public static class ResultExtensions
 	{
 		return result.Exception.ReturnErrorResponse();
 	}
-	
+
 	/// <summary>
 	/// Returns an error response based on the type of exception contained in the result.
 	/// </summary>
@@ -73,11 +73,21 @@ public static class ResultExtensions
 	}
 
 	/// <summary>
+	/// Returns an error response based on the type of exception.
+	/// </summary>
+	/// <param name="exception">The exception that occurred.</param>
+	/// <returns>An IActionResult representing an error response.</returns>
+	public static IActionResult ReturnErrorResponse(this Exception exception)
+	{
+		return ReturnErrorResponseFromException(exception);
+	}
+
+	/// <summary>
 	/// Determines the appropriate IActionResult to return based on the type of exception.
 	/// </summary>
 	/// <param name="exception">The exception that occurred.</param>
 	/// <returns>An IActionResult representing the specific error based on the exception type.</returns>
-	private static IActionResult ReturnErrorResponse(this Exception exception)
+	private static IActionResult ReturnErrorResponseFromException(Exception exception)
 	{
 		switch (exception)
 		{
