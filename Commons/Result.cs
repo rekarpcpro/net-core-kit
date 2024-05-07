@@ -19,6 +19,9 @@ public class Result
 
 #nullable enable
 
+	/// <summary>
+	/// Gets a value indicating whether the operation failed.
+	/// </summary>
 	public bool IsFailure => !IsSuccess;
 
 	/// <summary>

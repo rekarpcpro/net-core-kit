@@ -1,4 +1,5 @@
-﻿using NetCoreKit.Exceptions;
+﻿using NetCoreKit.Commons;
+using NetCoreKit.Exceptions;
 
 namespace NetCoreKit.Extensions;
 
@@ -17,6 +18,11 @@ public static class TaskExtensions
 	/// <exception cref="Exception">Thrown when the task's result is null.</exception>
 	public static async Task<T> ThrowIfResultNull<T>(this Task<T?> task, string? message = null)
 	{
+		Result<string> newResult = "";
+		
+		newResult.ThrowIfFailure();
+		
+		
 		T? result = await task;
 
 		if (result == null)
